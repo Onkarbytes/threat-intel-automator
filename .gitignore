@@ -1,0 +1,11 @@
+config.yaml
+.env
+ioc_cache.db
+reports/
+*.log
+__pycache__/
+*.pyc
+.venv/
+*.tmp
+.DS_Store
+Thumbs.db

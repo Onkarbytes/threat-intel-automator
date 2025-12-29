@@ -1,0 +1,43 @@
+# Configuration file for IOC Extraction and Enrichment Pipeline
+
+# API Configuration (for Phase 2)
+apis:
+  virustotal:
+    base_url: "https://www.virustotal.com/api/v3"
+    # Add your VirusTotal API key here
+    api_key: "YOUR_VIRUSTOTAL_API_KEY_HERE"
+    rate_limit: 3  # Conservative: 3 requests/minute (well under 4/min limit)
+    limit_type: "per_minute"
+  abuseipdb:
+    base_url: "https://api.abuseipdb.com/api/v2"
+    # Add your AbuseIPDB API key here
+    api_key: "YOUR_ABUSEIPDB_API_KEY_HERE"
+    rate_limit: 800  # Conservative: 800 requests/day (well under 1000/day limit)
+    limit_type: "daily"
+  whois:
+    # WHOIS doesn't require API key, uses public services
+    rate_limit: 10
+  gemini:
+    api_key: "YOUR_GEMINI_API_KEY_HERE"  # Add your Google Gemini API key here
+
+# Risk Scoring Thresholds (for Phase 3)
+risk_thresholds:
+  critical:
+    vt_vendors: 3
+    abuse_score: 50
+  high:
+    tor_node: true
+  medium:
+    vt_vendors: 1
+    abuse_score: 20
+
+# Output Configuration (for Phase 4)
+output:
+  json_file: "iocs_report.json"
+  csv_file: "iocs_summary.csv"
+  log_file: "extraction.log"
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(levelname)s - %(message)s"
