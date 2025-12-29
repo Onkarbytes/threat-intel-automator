@@ -1,0 +1,15 @@
+# PHASE: RECONNAISSANCE & INITIAL ACCESS
+2025-12-27 08:00:15 INFO Web Server: Incoming GET request for /login from 185.220.101.45 (Tor Exit Node)
+2025-12-27 08:05:22 WARN Auth Service: 50 failed login attempts for user 'admin' in 60s from 185.220.101.45
+2025-12-27 08:10:05 INFO Auth Service: Successful login for user 'admin' from 185.220.101.45
+2025-12-27 08:12:44 WARN WAF: Possible SQL Injection detected in URI: /api/users?id=1' OR 1=1-- from 185.220.101.45
+
+# PHASE: PERSISTENCE & MALWARE DROP
+2025-12-27 09:00:10 INFO Endpoint-01: File created: C:\Windows\Temp\svc_update.exe (Hash: e99a18c428cb38d5f260853678922e03)
+2025-12-27 09:05:33 ERROR EDR: Suspicious process execution: 'powershell.exe -ExecutionPolicy Bypass -File C:\Windows\Temp\svc_update.ps1'
+2025-12-27 09:15:20 INFO DNS: Lookup for command-and-control-server.top from Endpoint-01
+
+# PHASE: LATERAL MOVEMENT & EXFILTRATION
+2025-12-27 10:30:45 INFO Firewall: Connection from 10.0.0.5 (Endpoint-01) to 10.0.0.22 (DB-Server) on Port 445 (SMB)
+2025-12-27 11:00:12 WARN DB-Server: Unusual spike in database reads (1.2GB) by user 'svc_admin'
+2025-12-27 11:45:00 INFO Firewall: Large data transfer (950MB) from 10.0.0.5 to 91.234.11.12 (Known Malicious IP)

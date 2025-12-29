@@ -1,0 +1,10 @@
+requests
+pyyaml
+pandas
+plotly
+streamlit
+pyvis
+python-dotenv
+# yara-python  # Requires Visual C++ Build Tools on Windows
+google-genai
+openai
